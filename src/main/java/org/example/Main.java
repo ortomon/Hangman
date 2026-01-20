@@ -1,7 +1,8 @@
 package org.example;
 
 import org.example.game.GameRunner;
-import org.example.game.HangmanRenderer;
+import org.example.view.HangmanRenderer;
+import org.example.game.Menu;
 import org.example.validator.LetterTextValidator;
 import org.example.validator.WordTextValidator;
 import org.example.word.WordRepository;
@@ -17,6 +18,7 @@ public class Main {
         WordRepository wordRepository = new WordRepository("/words.txt", wordValidator);
         HangmanRenderer hangmanRenderer = new HangmanRenderer();
         GameRunner gameRunner = new GameRunner(scanner, wordRepository, letterValidator, hangmanRenderer);
-        gameRunner.start();
+        Menu menu = new Menu(scanner, gameRunner);
+        menu.start();
     }
 }

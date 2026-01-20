@@ -1,4 +1,4 @@
-package org.example.game;
+package org.example.view;
 
 public class HangmanRenderer {
     private static final String[] PICTURES = {
