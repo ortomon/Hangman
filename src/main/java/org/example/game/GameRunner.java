@@ -26,12 +26,13 @@ public class GameRunner {
 
             if (line.equals(CMD_NEW_GAME)) {
                 playRound();
-            } else if (line.equals(CMD_EXIT)) {
+                continue;
+            }
+            if (line.equals(CMD_EXIT)) {
                 System.out.println("пока пока");
                 break;
-            } else {
-                System.out.println("некорректное значение");
             }
+            System.out.println("некорректное значение");
         }
     }
 

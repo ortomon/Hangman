@@ -29,18 +29,16 @@ public class Game {
         if (secretLetters.contains(guessLetter)) {
             openLetter(guessLetter);
             return MoveResult.CORRECT;
-        } else {
-            countWrongGuesses++;
-            return MoveResult.WRONG;
         }
+        countWrongGuesses++;
+        return MoveResult.WRONG;
     }
 
     public GameState gameOver() {
         if (isWon()) {
             return GameState.WON;
-        } else {
-            return GameState.LOST;
         }
+        return GameState.LOST;
     }
 
     public boolean canContinue() {
