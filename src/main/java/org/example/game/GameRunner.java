@@ -12,11 +12,14 @@ public class GameRunner {
     private final Scanner scanner;
     private final WordRepository wordRepository;
     private final LetterTextValidator letterValidator;
+    private final HangmanRenderer hangmanRenderer;
 
-    public GameRunner(Scanner scanner, WordRepository wordRepository, LetterTextValidator letterValidator) {
+    public GameRunner(Scanner scanner, WordRepository wordRepository,
+                      LetterTextValidator letterValidator, HangmanRenderer hangmanRenderer) {
         this.scanner = scanner;
         this.wordRepository = wordRepository;
         this.letterValidator = letterValidator;
+        this.hangmanRenderer = hangmanRenderer;
     }
 
     public void start() {
@@ -80,8 +83,9 @@ public class GameRunner {
         }
         System.out.println("загаданное слово: " + game.getRevealedLetters()
                 + "\nуже использованные буквы: " + game.getEnteredLetters()
-                + "\nколичество ошибок: " + game.getCountWrongGuesses() + " из " + game.getMaxWrongGuesses()
-                + HangmanState.fromMistakes(game.getCountWrongGuesses())
-                + "\n-------------------------------------------------------------");
+                + "\nколичество ошибок: " + game.getCountWrongGuesses() + " из " + game.getMaxWrongGuesses());
+        hangmanRenderer.render(game.getCountWrongGuesses());
+        System.out.println("\n-------------------------------------------------------------");
     }
 }
+//                 + hangmanRenderer.render(game.getCountWrongGuesses())

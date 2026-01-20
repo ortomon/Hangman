@@ -1,7 +1,8 @@
 package org.example.game;
 
-public enum HangmanState {
-    ZERO_MISTAKES("""
+public class HangmanRenderer {
+    private static final String[] PICTURES = {
+            """
             
               +---+
               |   |
@@ -10,31 +11,28 @@ public enum HangmanState {
                   |
                   |
             =========
-            """),
-
-    ONE_MISTAKE("""
-            
-              +---+
-              |   |
-              O   |
-                  |
-                  |
-                  |
-            =========
-            """),
-
-    TWO_MISTAKE("""
+            """,
+            """
             
               +---+
               |   |
               O   |
+                  |
+                  |
+                  |
+            =========
+            """,
+            """
+            
+              +---+
+              |   |
+              O   |
               |   |
                   |
                   |
             =========
-            """),
-
-    THREE_MISTAKE("""
+            """,
+            """
             
               +---+
               |   |
@@ -43,9 +41,8 @@ public enum HangmanState {
                   |
                   |
             =========
-            """),
-
-    FOUR_MISTAKE("""
+            """,
+            """
             
               +---+
               |   |
@@ -54,9 +51,8 @@ public enum HangmanState {
                   |
                   |
             =========
-            """),
-
-    FIVE_MISTAKE("""
+            """,
+            """
             
               +---+
               |   |
@@ -65,9 +61,8 @@ public enum HangmanState {
              /    |
                   |
             =========
-            """),
-
-    SIX_MISTAKE("""
+            """,
+            """
             
               +---+
               |   |
@@ -76,23 +71,11 @@ public enum HangmanState {
              / \\  |
                   |
             =========
-            """);
+            """
+    };
 
-    private final String state;
-
-    HangmanState(String state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return state;
-    }
-
-    public static HangmanState fromMistakes(int mistakes) {
-        if (mistakes >= values().length) {
-            return values()[values().length - 1];
-        }
-        return values()[mistakes];
+    public void render(int pictureNumber) {
+        String picture = PICTURES[pictureNumber];
+        System.out.println(picture);
     }
 }
