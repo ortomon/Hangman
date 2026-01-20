@@ -1,5 +1,7 @@
 package org.example.word;
 
+import org.example.validator.WordTextValidator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,18 +14,18 @@ public class WordRepository {
     private List<String> words = new ArrayList<>();
     private final Random random = new Random();
 
-    public WordRepository(String fileName, TextValidator textValidator) {
-        this.words = filterWords(readLinesFromFile(fileName), textValidator);
+    public WordRepository(String fileName, WordTextValidator wordValidator) {
+        this.words = filterWords(readLinesFromFile(fileName), wordValidator);
     }
 
     public String getRandomWord() {
         return words.get(random.nextInt(words.size()));
     }
 
-    private List<String> filterWords(List<String> lines, TextValidator textValidator) {
+    private List<String> filterWords(List<String> lines, WordTextValidator wordValidator) {
         words = lines.stream()
-                .map(word -> textValidator.toCanonicalForm(word))
-                .filter(word -> textValidator.isWordValid(word))
+                .map(word -> word.trim().toLowerCase())
+                .filter(word -> wordValidator.isValid(word))
                 .toList();
         if (words.isEmpty()) {
             throw new RuntimeException("No words available for the game");

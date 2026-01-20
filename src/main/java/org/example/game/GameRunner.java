@@ -1,6 +1,6 @@
 package org.example.game;
 
-import org.example.word.TextValidator;
+import org.example.validator.LetterTextValidator;
 import org.example.word.WordRepository;
 
 import java.util.Scanner;
@@ -11,12 +11,12 @@ public class GameRunner {
 
     private final Scanner scanner;
     private final WordRepository wordRepository;
-    private final TextValidator textValidator;
+    private final LetterTextValidator letterValidator;
 
-    public GameRunner(Scanner scanner, WordRepository wordRepository, TextValidator textValidator) {
+    public GameRunner(Scanner scanner, WordRepository wordRepository, LetterTextValidator letterValidator) {
         this.scanner = scanner;
         this.wordRepository = wordRepository;
-        this.textValidator = textValidator;
+        this.letterValidator = letterValidator;
     }
 
     public void start() {
@@ -51,7 +51,7 @@ public class GameRunner {
         while (true) {
             System.out.println("введите букву:");
             String playerInput = scanner.nextLine().trim().toLowerCase();
-            if (textValidator.isSingleLetterValid(playerInput)) {
+            if (playerInput.length() == 1 && letterValidator.isValid(playerInput.charAt(0))) {
                 return playerInput.charAt(0);
             }
             System.out.println("некорректное значение, введите ровно одну русскую букву");
