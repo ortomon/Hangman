@@ -26,7 +26,7 @@ public class WordRepository {
                 .filter(word -> textValidator.isWordValid(word))
                 .toList();
         if (words.isEmpty()) {
-            throw new RuntimeException("нет слов для игры");
+            throw new RuntimeException("No words available for the game");
         }
         return words;
     }
@@ -34,13 +34,13 @@ public class WordRepository {
     private List<String> readLinesFromFile(String fileName) {
         InputStream text = WordRepository.class.getResourceAsStream(fileName);
         if (text == null) {
-            throw new RuntimeException("файл со словами не найден: " + fileName);
+            throw new RuntimeException("Word file not found: " + fileName);
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(text))) {
             return reader.lines().toList();
         } catch (IOException e) {
-            throw new RuntimeException("ошибка чтения слов из файла ", e);
+            throw new RuntimeException("Error reading words from file: ", e);
         }
     }
 }

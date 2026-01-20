@@ -66,9 +66,9 @@ public class GameRunner {
 
     private void printMainMenu() {
         System.out.println("-------------------------------------------------------------" +
-                "\nПривет, хочешь сыграть в виселицу? введи:" +
-                "\n1 - если хочешь начать новую игру" +
-                "\n2 - если хочешь выйти из приложения");
+                "\nПривет, хочешь сыграть в виселицу? введи:\n" +
+                CMD_NEW_GAME + " - если хочешь начать новую игру\n" +
+                CMD_EXIT + " - если хочешь выйти из приложения");
     }
 
     private void printMoveResult(Game game, MoveResult moveResult) {

@@ -27,7 +27,7 @@ public class Game {
 
         enteredLetters.add(guessLetter);
         if (secretLetters.contains(guessLetter)) {
-            showLetter(guessLetter);
+            openLetter(guessLetter);
             return MoveResult.CORRECT;
         } else {
             countWrongGuesses++;
@@ -51,7 +51,7 @@ public class Game {
         return !revealedLetters.contains(MASK_SYMBOL);
     }
 
-    private void showLetter(char guessLetter) {
+    private void openLetter(char guessLetter) {
         for (int i = 0; i < secretLetters.size(); i++) {
             if (guessLetter == secretLetters.get(i)) {
                 revealedLetters.set(i, guessLetter);
