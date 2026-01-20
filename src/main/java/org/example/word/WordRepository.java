@@ -15,7 +15,8 @@ public class WordRepository {
     private final Random random = new Random();
 
     public WordRepository(String fileName, WordTextValidator wordValidator) {
-        this.words = filterWords(readLinesFromFile(fileName), wordValidator);
+        List<String> allWords = readLinesFromFile(fileName);
+        this.words = filterWords(allWords, wordValidator);
     }
 
     public String getRandomWord() {
