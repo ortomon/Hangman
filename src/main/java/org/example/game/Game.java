@@ -1,9 +1,6 @@
 package org.example.game;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Game {
     private static final int MAX_WRONG_GUESSES = 6;
@@ -11,9 +8,9 @@ public class Game {
 
     private int countWrongGuesses;
     private final String secretWord;
-    private final List<Character> secretLetters = new ArrayList<Character>();
-    private final List<Character> revealedLetters = new ArrayList<Character>();
-    private final Set<Character> enteredLetters = new HashSet<Character>();
+    private final List<Character> secretLetters = new ArrayList<>();
+    private final List<Character> revealedLetters = new ArrayList<>();
+    private final Set<Character> enteredLetters = new LinkedHashSet<>();
 
     public Game(String secretWord) {
         this.secretWord = secretWord;
@@ -34,18 +31,15 @@ public class Game {
         return MoveResult.WRONG;
     }
 
-    public GameState gameOver() {
-        if (isWon()) {
-            return GameState.WON;
-        }
-        return GameState.LOST;
+    public boolean isGameOver() {
+        return isLose() || isWon();
     }
 
-    public boolean canContinue() {
-        return countWrongGuesses < MAX_WRONG_GUESSES && !isWon();
+    public boolean isLose() {
+        return countWrongGuesses >= MAX_WRONG_GUESSES;
     }
 
-    private boolean isWon() {
+    public boolean isWon() {
         return !revealedLetters.contains(MASK_SYMBOL);
     }
 
